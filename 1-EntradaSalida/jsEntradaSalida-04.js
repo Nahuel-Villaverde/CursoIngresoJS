@@ -9,8 +9,8 @@ y lo muestro por 'ID' al presionar el botón 'mostrar'
 function mostrar()
 {
 	let nombre = prompt("¿Cuál es su nombre?");
-	document.getElementById("txtIdNombre").value;
-	alert(nombre);
+	document.getElementById("txtIdNombre").value = nombre;
+	
 
 }
 

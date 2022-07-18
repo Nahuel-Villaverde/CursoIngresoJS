@@ -1,3 +1,8 @@
+/*
+	Nahuel Villaverde Guzman
+	Div E
+	Ejercicio 11 if (practica parcial)
+*/
 function mostrar()
 {	
 	let numero1;

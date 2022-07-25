@@ -1,7 +1,7 @@
 /*
 	Nahuel Villaverde Guzman
 	Div E
-	Tp 4 
+	Tp 4 Switch IF
 
 4.	Para el departamento de iluminación:
 Tomando en cuenta que todas las lámparas están en oferta al mismo precio de $35 pesos final.
@@ -18,74 +18,80 @@ function CalcularPrecio ()
  	let cantidadLamparitas;
  	let descuento;
  	let marca;
- 	let precio;
- 	let precioConDescuento;
+ 	let precioBase;
  	let iva;
  	let precioConIva;
+ 	let porcentaje;
 
 	cantidadLamparitas = parseInt(cantidadLamparitas);
-	descuento = parseInt(descuento);
-	iva = parseInt(iva);
  	cantidadLamparitas = document.getElementById("txtIdCantidad").value;
  	marca = document.getElementById("Marca").value;
- 	document.getElementById("txtIdprecioDescuento").value = descuento;
 	
-	precio = (cantidadLamparitas * 35);
+	precioBase = (cantidadLamparitas * 35);
 
 
-	if (cantidadLamparitas >= 6 ){
-		descuento = (50/100) * (precio);
-		precioConDescuento = precio - descuento;
-		//document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
-		//alert("su descuento es de " + descuento + " y se registró correctamente");
-	}
-	else if (cantidadLamparitas == 5 && marca == "ArgentinaLuz"){
-		descuento = (40/100) * (precio);
-		precioConDescuento = precio - descuento
-		//document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
-		//alert("su descuento es de " + descuento + " y se registró correctamente");
-	}
-	else if (cantidadLamparitas == 5 && marca !== "ArgentinaLuz"){
-		descuento = (30/100) * (precio);
-		precioConDescuento = precio - descuento
-		//document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
-		//alert("su descuento es de " + descuento + " y se registró correctamente");
-	}
-	else if (cantidadLamparitas == 4 && marca == "ArgentinaLuz" || marca == "FelipeLamparas"){
-		descuento = (25/100) * (precio);
-		precioConDescuento = precio - descuento
-		//document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
-		//alert("su descuento es de " + descuento + " y se registró correctamente");
-	}
-	else if (cantidadLamparitas == 4 && marca !== "ArgentinaLuz" && marca !== "FelipeLamparas"){
-		descuento = (20/100) * (precio);
-		precioConDescuento = precio - descuento
-		//document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
-		//alert("su descuento es de " + descuento + " y se registró correctamente");
-	}
-	else if (cantidadLamparitas == 3 && marca == "ArgentinaLuz") {
-		descuento = (15/100) * (precio);
-		precioConDescuento = precio - descuento
-		//document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
-		//alert("su descuento es de " + descuento + " y se registró correctamente");
-	}
-	else if (cantidadLamparitas == 3 && marca == "FelipeLamparas") {
-		descuento = (10/100) * (precio);
-		precioConDescuento = precio - descuento
-		//document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
-		//alert("su descuento es de " + descuento + " y se registró correctamente");
-	}
-	else if (cantidadLamparitas == 3 && marca !== "ArgentinaLuz" && marca !== "FelipeLamparas") {
-		descuento = (5/100) * (precio);
-		precioConDescuento = precio - descuento
-		//document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
-		//alert("su descuento es de " + descuento + " y se registró correctamente");
-	}
-		if (precioConDescuento > 120){
-			iva = (precioConDescuento) * (10/100);
-			precioConIva = precioConDescuento + iva;
+	switch(cantidadLamparitas)
+    {
+        case "5":
+            if (marca == "ArgentinaLuz")
+            {
+                    porcentaje = 40;	
+    		}
+    		else {
+               		porcentaje = 30;
+    		}
+    		break;
+    	case "4":
+            if (marca == "ArgentinaLuz" || "FelipeLamparas")
+            {
+                    porcentaje = 25;
+    		}
+    		else{
+    			porcentaje = 20;
+    		}
+    		break;
+    	case "3":
+            if (marca == "ArgentinaLuz")
+            {
+                    porcentaje = 15;
+    		}
+    		else if(marca == "FelipeLamparas"){
+    			porcentaje = 10;
+    		}
+            else{
+            	porcentaje = 5;
+            }
+    		break;
+    	case "2":
+    	case "1":
+    		porcentaje = 0;
+    		break;
+    	default:
+    		porcentaje = 50;
+    		break;
+    		
+    }
+	
+
+
+    descuento = (porcentaje/100 * precioBase);
+    precioFinal = precioBase - descuento;
+    alert("su descuento es de " + descuento + " y se registró correctamente");
+    document.getElementById("txtIdprecioDescuento").value = precioFinal;
+    
+
+    if (precioFinal > 120){
+			iva = (precioFinal) * (10/100);
+			precioConIva = precioFinal + iva;
 			alert("IIBB Usted pago " +  precioConIva +  " siendo " + iva + " el impuesto que se pagó.");
 		}
-alert("su descuento es de " + descuento + " y se registró correctamente");
-document.getElementById("txtIdprecioDescuento").value = precioConDescuento;
+
+    
+	/*if (precioFinal < precioConIva) {
+		document.getElementById("txtIdprecioDescuento").value = precioConIva;
+	}	
+	else {
+		document.getElementById("txtIdprecioDescuento").value = precioFinal;
+	}	
+	*/
 }

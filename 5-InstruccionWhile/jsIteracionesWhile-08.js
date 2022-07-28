@@ -1,4 +1,7 @@
 /*
+	Nahuel Villaverde Guzman
+	Div E
+	Ejercicio 8 While
 Al presionar el botón pedir  números  hasta que el usuario quiera,
 sumar los que son positivos y multiplicar los negativos.*/
 function mostrar()
